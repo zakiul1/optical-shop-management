@@ -48,7 +48,7 @@ function Section({ title, children, action }) {
 
 function ReportFilters({ filters }) {
     const apply = (next) => {
-        router.get('/reports', { ...filters, ...next }, { preserveState: true, replace: true });
+        router.get('/shop-admin/reports', { ...filters, ...next }, { preserveState: true, replace: true });
     };
 
     return (
@@ -81,7 +81,7 @@ function ReportFilters({ filters }) {
                 )}
 
                 <Link
-                    href={`/reports/print?${new URLSearchParams(filters).toString()}`}
+                    href={`/shop-admin/reports/print?${new URLSearchParams(filters).toString()}`}
                     target="_blank"
                     className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-4 py-2 font-semibold text-white shadow-lg shadow-blue-600/20 xl:col-start-7"
                 >

@@ -43,7 +43,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => fn () => $request->user() ? array_merge($request->user()->only(['id', 'name', 'email', 'phone', 'photo_path', 'role', 'is_active']), ['photo_url' => $request->user()->photo_path ? Storage::url($request->user()->photo_path) : null]) : null,
             ],
-            'locale' => fn () => $request->session()->get('locale', 'en'),
+            'locale' => fn () => $request->session()->get('locale', 'bn'),
             'flash' => [
                 'success' => fn () => $request->session()->get('success'),
                 'error' => fn () => $request->session()->get('error'),

@@ -28,12 +28,12 @@ export default function Index({ sales, filters = {}, summary = {} }) {
     const { delete: destroy, processing } = useForm();
 
     const applyFilter = (key, value) => {
-        router.get('/sales', { ...filters, [key]: value }, { preserveState: true, replace: true });
+        router.get('/shop-admin/sales', { ...filters, [key]: value }, { preserveState: true, replace: true });
     };
 
     const removeSale = () => {
         if (!deleteTarget) return;
-        destroy(`/sales/${deleteTarget.id}`, { onSuccess: () => setDeleteTarget(null) });
+        destroy(`/shop-admin/sales/${deleteTarget.id}`, { onSuccess: () => setDeleteTarget(null) });
     };
 
     return (
@@ -65,7 +65,7 @@ export default function Index({ sales, filters = {}, summary = {} }) {
                     <input type="date" value={filters.from ?? ''} onChange={e => applyFilter('from', e.target.value)} className="rounded-2xl border border-slate-200 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-900" />
                     <input type="date" value={filters.to ?? ''} onChange={e => applyFilter('to', e.target.value)} className="rounded-2xl border border-slate-200 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-900" />
                 </div>
-                <Link href="/sales/create" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-4 py-3 font-semibold text-white shadow-lg shadow-blue-600/20"><Icon name="plus" /> New Sale</Link>
+                <Link href="/shop-admin/sales/create" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-4 py-3 font-semibold text-white shadow-lg shadow-blue-600/20"><Icon name="plus" /> New Sale</Link>
             </div>
 
             <section className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
@@ -97,8 +97,8 @@ export default function Index({ sales, filters = {}, summary = {} }) {
                                     <td className="px-5 py-4"><AuditMeta item={sale} compact /></td>
                                     <td className="px-5 py-4">
                                         <div className="flex justify-end gap-2">
-                                            <Link href={`/sales/${sale.id}`} className="rounded-xl border border-slate-200 p-2 hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800"><Icon name="eye" /></Link>
-                                            <Link href={`/sales/${sale.id}/invoice`} className="rounded-xl border border-slate-200 p-2 hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800"><Icon name="download" /></Link>
+                                            <Link href={`/shop-admin/sales/${sale.id}`} className="rounded-xl border border-slate-200 p-2 hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800"><Icon name="eye" /></Link>
+                                            <Link href={`/shop-admin/sales/${sale.id}/invoice`} className="rounded-xl border border-slate-200 p-2 hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800"><Icon name="download" /></Link>
                                             <button disabled={processing} onClick={() => setDeleteTarget(sale)} className="rounded-xl border border-red-200 p-2 text-red-600 hover:bg-red-50 dark:border-red-900 dark:hover:bg-red-950"><Icon name="trash" /></button>
                                         </div>
                                     </td>

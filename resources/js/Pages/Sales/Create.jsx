@@ -70,7 +70,7 @@ export default function Create({ products = [] }) {
 
     const submit = (e) => {
         e.preventDefault();
-        post('/sales');
+        post('/shop-admin/sales');
     };
 
     return (
@@ -159,7 +159,7 @@ export default function Create({ products = [] }) {
                     </div>
                     <div className="mt-5 grid gap-3">
                         <button disabled={processing} className="rounded-2xl bg-blue-600 px-5 py-3 font-semibold text-white shadow-lg shadow-blue-600/20 disabled:opacity-60">{processing ? 'Saving...' : 'Complete Sale'}</button>
-                        <Link href="/sales" className="rounded-2xl border border-slate-200 px-5 py-3 text-center font-semibold dark:border-slate-700">Cancel</Link>
+                        <Link href="/shop-admin/sales" className="rounded-2xl border border-slate-200 px-5 py-3 text-center font-semibold dark:border-slate-700">Cancel</Link>
                     </div>
                 </aside>
             </form>

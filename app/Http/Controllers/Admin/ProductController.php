@@ -183,13 +183,22 @@ class ProductController extends Controller
             'photochromic' => ['boolean'],
             'anti_reflection' => ['boolean'],
             'high_index' => ['boolean'],
+            'show_on_website' => ['boolean'],
+            'is_featured' => ['boolean'],
+            'website_short_description' => ['nullable', 'string'],
+            'website_short_description_bn' => ['nullable', 'string'],
         ]);
 
         return [
             'product' => collect($validated)->only([
                 'category_id', 'supplier_id', 'product_type', 'name', 'sku', 'barcode', 'brand', 'description',
                 'purchase_price', 'sale_price', 'stock_quantity', 'minimum_stock_alert', 'unit', 'is_active',
-            ])->merge(['is_active' => $request->boolean('is_active', true)])->toArray(),
+                'show_on_website', 'is_featured', 'website_short_description', 'website_short_description_bn',
+            ])->merge([
+                'is_active' => $request->boolean('is_active', true),
+                'show_on_website' => $request->boolean('show_on_website'),
+                'is_featured' => $request->boolean('is_featured'),
+            ])->toArray(),
             'medicine' => collect($validated)->only([
                 'generic_name', 'strength', 'dosage_form', 'manufacturer', 'batch_no', 'manufacture_date', 'expire_date', 'storage_note',
             ])->toArray(),

@@ -7,10 +7,10 @@ import AuditMeta from '@/Components/AuditMeta';
 export default function Index({ movements, products = [], filters = {}, summary = {} }) {
     const { data, setData, post, processing, errors, reset } = useForm({ product_id: '', adjustment_type: 'increase', quantity: 0, note: '' });
     const selected = products.find(p => Number(p.id) === Number(data.product_id));
-    const applyFilter = (key, value) => router.get('/stock-adjustments', { ...filters, [key]: value }, { preserveState: true, replace: true });
+    const applyFilter = (key, value) => router.get('/shop-admin/stock-adjustments', { ...filters, [key]: value }, { preserveState: true, replace: true });
     const submit = e => {
         e.preventDefault();
-        post('/stock-adjustments', { preserveScroll: true, onSuccess: () => reset() });
+        post('/shop-admin/stock-adjustments', { preserveScroll: true, onSuccess: () => reset() });
     };
 
     return (

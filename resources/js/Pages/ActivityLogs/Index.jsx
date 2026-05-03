@@ -4,8 +4,8 @@ import { Icon } from '@/Components/Icons';
 import { Input, Select } from '@/Components/Input';
 
 export default function Index({ logs, filters = {}, users = [], actions = [], summary = {} }) {
-    const applyFilter = (key, value) => router.get('/activity-logs', { ...filters, [key]: value }, { preserveState: true, replace: true });
-    const resetFilters = () => router.get('/activity-logs');
+    const applyFilter = (key, value) => router.get('/shop-admin/activity-logs', { ...filters, [key]: value }, { preserveState: true, replace: true });
+    const resetFilters = () => router.get('/shop-admin/activity-logs');
 
     return (
         <AdminLayout title="Activity Logs">

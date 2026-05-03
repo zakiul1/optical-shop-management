@@ -8,7 +8,7 @@ export const translations = {
 };
 
 export function useI18n() {
-    const locale = usePage().props.locale || 'en';
+    const locale = usePage().props.locale || 'bn';
     const t = (key) => translations[locale]?.[key] || translations.en[key] || key;
     return { locale, t };
 }

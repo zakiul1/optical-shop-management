@@ -5,7 +5,7 @@ import ImageUpload from '@/Components/ImageUpload';
 import { useI18n } from '@/i18n';
 
 const baseForm = (type = 'medicine') => ({
-    product_type: type, category_id: '', supplier_id: '', name: '', sku: '', barcode: '', brand: '', description: '', purchase_price: 0, sale_price: 0, stock_quantity: 0, minimum_stock_alert: 3, unit: 'pcs', is_active: true,
+    product_type: type, category_id: '', supplier_id: '', name: '', sku: '', barcode: '', brand: '', description: '', purchase_price: 0, sale_price: 0, stock_quantity: 0, minimum_stock_alert: 3, unit: 'pcs', is_active: true, show_on_website: false, is_featured: false, website_short_description: '', website_short_description_bn: '',
     images: [], remove_image_ids: [],
     generic_name: '', strength: '', dosage_form: '', manufacturer: '', batch_no: '', manufacture_date: '', expire_date: '', storage_note: '',
     glass_type: 'frame', model_no: '', frame_material: '', frame_color: '', size: '', lens_power: '', sph: '', cyl: '', axis: '', addition: '', lens_type: '', blue_cut: false, photochromic: false, anti_reflection: false, high_index: false,
@@ -27,9 +27,9 @@ export default function ProductForm({ mode, product, categories = [], suppliers 
     const submit = (e) => {
         e.preventDefault();
         if (mode === 'edit') {
-            post(`/products/${product.id}`, { forceFormData: true });
+            post(`/shop-admin/products/${product.id}`, { forceFormData: true });
         } else {
-            post('/products', { forceFormData: true });
+            post('/shop-admin/products', { forceFormData: true });
         }
     };
 
@@ -64,8 +64,16 @@ export default function ProductForm({ mode, product, categories = [], suppliers 
                             <Input label="Unit" value={data.unit} onChange={e => setData('unit', e.target.value)} error={errors.unit} />
                         </div>
                         <div className="mt-4"><Textarea label="Description" rows="3" value={data.description ?? ''} onChange={e => setData('description', e.target.value)} error={errors.description} /></div>
+                        <div className="mt-4 grid gap-4 md:grid-cols-2">
+                            <Textarea label="Website Short Description" rows="3" value={data.website_short_description ?? ''} onChange={e => setData('website_short_description', e.target.value)} error={errors.website_short_description} />
+                            <Textarea label="Website Short Description (Bangla)" rows="3" value={data.website_short_description_bn ?? ''} onChange={e => setData('website_short_description_bn', e.target.value)} error={errors.website_short_description_bn} />
+                        </div>
                         <div className="mt-5"><ImageUpload label={t('uploadImages')} files={data.images} multiple existing={product?.images ?? []} removeIds={data.remove_image_ids ?? []} onToggleRemove={toggleRemoveImage} onChange={files => setData('images', files)} error={errors.images || errors['images.0']} /></div>
-                        <label className="mt-4 flex items-center gap-2 text-sm font-medium"><input type="checkbox" checked={data.is_active} onChange={e => setData('is_active', e.target.checked)} /> Active product</label>
+                        <div className="mt-4 grid gap-3 md:grid-cols-3">
+                            <label className="flex items-center gap-2 rounded-2xl bg-slate-50 p-3 text-sm font-medium dark:bg-slate-950"><input type="checkbox" checked={data.is_active} onChange={e => setData('is_active', e.target.checked)} /> Active product</label>
+                            <label className="flex items-center gap-2 rounded-2xl bg-blue-50 p-3 text-sm font-medium text-blue-700 dark:bg-blue-500/10 dark:text-blue-300"><input type="checkbox" checked={Boolean(data.show_on_website)} onChange={e => setData('show_on_website', e.target.checked)} /> Show on website</label>
+                            <label className="flex items-center gap-2 rounded-2xl bg-emerald-50 p-3 text-sm font-medium text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300"><input type="checkbox" checked={Boolean(data.is_featured)} onChange={e => setData('is_featured', e.target.checked)} /> Featured on website</label>
+                        </div>
                     </div>
                 </section>
 
@@ -106,7 +114,7 @@ export default function ProductForm({ mode, product, categories = [], suppliers 
                 )}
 
                 <div className="flex flex-wrap justify-end gap-3">
-                    <Link href="/products" className="rounded-2xl border border-slate-200 bg-white px-5 py-3 font-semibold dark:border-slate-700 dark:bg-slate-900">Cancel</Link>
+                    <Link href="/shop-admin/products" className="rounded-2xl border border-slate-200 bg-white px-5 py-3 font-semibold dark:border-slate-700 dark:bg-slate-900">Cancel</Link>
                     <button disabled={processing} className="rounded-2xl bg-blue-600 px-6 py-3 font-bold text-white shadow-lg shadow-blue-600/20 disabled:opacity-50">{processing ? 'Saving...' : (mode === 'edit' ? 'Update Product' : 'Save Product')}</button>
                 </div>
             </form>

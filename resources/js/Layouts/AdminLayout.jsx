@@ -30,27 +30,38 @@ export default function AdminLayout({ title, children }) {
     const totalAlerts = (systemAlerts.low_stock_count ?? 0) + (systemAlerts.expiring_medicine_count ?? 0) + (systemAlerts.expired_medicine_count ?? 0);
 
     const navItems = [
-        { href: '/dashboard', label: t('dashboard'), icon: 'dashboard' },
-        { href: '/products', label: t('products'), icon: 'box' },
-        { href: '/purchases', label: t('purchases'), icon: 'truck' },
-        { href: '/stock-adjustments', label: t('stockAdjustments'), icon: 'swap' },
-        { href: '/sales', label: t('salesInvoice'), icon: 'receipt' },
-        { href: '/reports', label: t('reports'), icon: 'chart' },
-        { href: '/suppliers', label: t('suppliers'), icon: 'users' },
-        { href: '/categories', label: t('categories'), icon: 'tag' },
+        { href: '/shop-admin/dashboard', label: t('dashboard'), icon: 'dashboard' },
+        { href: '/shop-admin/products', label: t('products'), icon: 'box' },
+        { href: '/shop-admin/purchases', label: t('purchases'), icon: 'truck' },
+        { href: '/shop-admin/stock-adjustments', label: t('stockAdjustments'), icon: 'swap' },
+        { href: '/shop-admin/sales', label: t('salesInvoice'), icon: 'receipt' },
+        { href: '/shop-admin/reports', label: t('reports'), icon: 'chart' },
+        { href: '/shop-admin/suppliers', label: t('suppliers'), icon: 'users' },
+        { href: '/shop-admin/categories', label: t('categories'), icon: 'tag' },
+    ];
+
+    const websiteItems = [
+        { href: '/website-admin', label: locale === 'bn' ? 'ওয়েবসাইট ড্যাশবোর্ড' : 'Website Dashboard', icon: 'globe' },
+        { href: '/website-admin/settings', label: locale === 'bn' ? 'ওয়েবসাইট সেটিংস' : 'Website Settings', icon: 'edit' },
+        { href: '/website-admin/hero-slides', label: locale === 'bn' ? 'হিরো ব্যানার' : 'Hero Banners', icon: 'sparkles' },
+        { href: '/website-admin/services', label: locale === 'bn' ? 'সার্ভিস' : 'Website Services', icon: 'eye' },
+        { href: '/website-admin/gallery', label: locale === 'bn' ? 'গ্যালারি' : 'Gallery', icon: 'image' },
+        { href: '/website-admin/testimonials', label: locale === 'bn' ? 'রিভিউ' : 'Testimonials', icon: 'users' },
+        { href: '/website-admin/messages', label: locale === 'bn' ? 'মেসেজ' : 'Contact Messages', icon: 'file' },
+        { href: '/website-admin/appointments', label: locale === 'bn' ? 'অ্যাপয়েন্টমেন্ট' : 'Appointments', icon: 'calendar' },
     ];
 
     const adminItems = authUser?.role === 'admin' ? [
-        { href: '/users', label: t('usersAccess'), icon: 'shield' },
-        { href: '/activity-logs', label: t('activityLogs'), icon: 'file' },
+        { href: '/shop-admin/users', label: t('usersAccess'), icon: 'shield' },
+        { href: '/shop-admin/activity-logs', label: t('activityLogs'), icon: 'file' },
     ] : [];
 
     const pageSubtitle = useMemo(() => {
-        if (url.startsWith('/users')) return locale === 'bn' ? 'অ্যাডমিন, ম্যানেজার ও স্টাফ এক্সেস' : 'Admin users, staff access and account status';
-        if (url.startsWith('/activity-logs')) return locale === 'bn' ? 'কে কোন কাজ করেছে তার সম্পূর্ণ অডিট ট্রেইল' : 'Full audit trail showing who created, edited or deleted records';
-        if (url.startsWith('/purchases')) return locale === 'bn' ? 'স্টক-ইন ও ক্রয় ম্যানেজমেন্ট' : 'Stock-in purchase management';
-        if (url.startsWith('/stock-adjustments')) return locale === 'bn' ? 'ম্যানুয়াল স্টক সংশোধন ও মুভমেন্ট হিস্ট্রি' : 'Manual stock correction and movement history';
-        if (url.startsWith('/sales')) return locale === 'bn' ? 'ইনভয়েস ও কাস্টমার বিক্রয় ম্যানেজমেন্ট' : 'Invoice and customer sales management';
+        if (url.startsWith('/shop-admin/users')) return locale === 'bn' ? 'অ্যাডমিন, ম্যানেজার ও স্টাফ এক্সেস' : 'Admin users, staff access and account status';
+        if (url.startsWith('/shop-admin/activity-logs')) return locale === 'bn' ? 'কে কোন কাজ করেছে তার সম্পূর্ণ অডিট ট্রেইল' : 'Full audit trail showing who created, edited or deleted records';
+        if (url.startsWith('/shop-admin/purchases')) return locale === 'bn' ? 'স্টক-ইন ও ক্রয় ম্যানেজমেন্ট' : 'Stock-in purchase management';
+        if (url.startsWith('/shop-admin/stock-adjustments')) return locale === 'bn' ? 'ম্যানুয়াল স্টক সংশোধন ও মুভমেন্ট হিস্ট্রি' : 'Manual stock correction and movement history';
+        if (url.startsWith('/shop-admin/sales')) return locale === 'bn' ? 'ইনভয়েস ও কাস্টমার বিক্রয় ম্যানেজমেন্ট' : 'Invoice and customer sales management';
         return t('shopSubtitle');
     }, [url, locale]);
 
@@ -72,7 +83,10 @@ export default function AdminLayout({ title, children }) {
                 </div>
             </div>
             <nav className="flex-1 space-y-1 overflow-y-auto p-4">
+                <div className="px-4 pb-2 text-xs font-black uppercase tracking-wider text-slate-400">{locale === 'bn' ? 'শপ ম্যানেজমেন্ট' : 'Shop Management'}</div>
                 {navItems.map(item => <NavLink key={item.href} item={item} url={url} onClick={() => setSidebarOpen(false)} />)}
+                <div className="px-4 pt-5 pb-2 text-xs font-black uppercase tracking-wider text-slate-400">{locale === 'bn' ? 'ওয়েবসাইট ম্যানেজমেন্ট' : 'Website Management'}</div>
+                {websiteItems.map(item => <NavLink key={item.href} item={item} url={url} onClick={() => setSidebarOpen(false)} />)}
                 {adminItems.length > 0 && <div className="px-4 pt-5 pb-2 text-xs font-black uppercase tracking-wider text-slate-400">{t('security')}</div>}
                 {adminItems.map(item => <NavLink key={item.href} item={item} url={url} onClick={() => setSidebarOpen(false)} />)}
             </nav>
@@ -101,7 +115,7 @@ export default function AdminLayout({ title, children }) {
                         <div className="flex shrink-0 items-center gap-2">
                             <div className="relative">
                                 <button className="relative rounded-xl border border-slate-200 p-2 dark:border-slate-700" onClick={() => setAlertsOpen(!alertsOpen)}><Icon name="bell" />{totalAlerts > 0 && <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white">{totalAlerts}</span>}</button>
-                                {alertsOpen && <div className="absolute right-0 z-50 mt-3 w-80 rounded-3xl border border-slate-200 bg-white p-3 shadow-2xl dark:border-slate-800 dark:bg-slate-900"><div className="mb-2 px-2 text-sm font-black">{t('notifications')}</div><AlertLink href="/products?stock=low" icon="alert" label={t('lowStockProducts')} count={systemAlerts.low_stock_count ?? 0} tone="amber" /><AlertLink href="/reports?report_type=expiry" icon="clock" label={t('expiringMedicines')} count={systemAlerts.expiring_medicine_count ?? 0} tone="orange" /><AlertLink href="/reports?report_type=expiry" icon="alert" label={t('expiredMedicines')} count={systemAlerts.expired_medicine_count ?? 0} tone="red" /></div>}
+                                {alertsOpen && <div className="absolute right-0 z-50 mt-3 w-80 rounded-3xl border border-slate-200 bg-white p-3 shadow-2xl dark:border-slate-800 dark:bg-slate-900"><div className="mb-2 px-2 text-sm font-black">{t('notifications')}</div><AlertLink href="/shop-admin/products?stock=low" icon="alert" label={t('lowStockProducts')} count={systemAlerts.low_stock_count ?? 0} tone="amber" /><AlertLink href="/shop-admin/reports?report_type=expiry" icon="clock" label={t('expiringMedicines')} count={systemAlerts.expiring_medicine_count ?? 0} tone="orange" /><AlertLink href="/shop-admin/reports?report_type=expiry" icon="alert" label={t('expiredMedicines')} count={systemAlerts.expired_medicine_count ?? 0} tone="red" /></div>}
                             </div>
                             <button title={t('language')} className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-black dark:border-slate-700" onClick={switchLanguage}><Icon name="globe" className="h-4 w-4" /> <span>{locale === 'bn' ? 'BN' : 'EN'}</span></button>
                             <button className="rounded-xl border border-slate-200 p-2 dark:border-slate-700" onClick={() => setDark(!dark)}><Icon name={dark ? 'sun' : 'moon'} /></button>

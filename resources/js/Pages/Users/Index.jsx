@@ -35,13 +35,13 @@ export default function Index({ users, filters = {}, summary = {} }) {
     const submit = (e) => {
         e.preventDefault();
         const options = { preserveScroll: true, forceFormData: true, onSuccess: () => { reset(); setEditing(null); } };
-        editing ? post(`/users/${editing.id}`, options) : post('/users', options);
+        editing ? post(`/shop-admin/users/${editing.id}`, options) : post('/shop-admin/users', options);
     };
 
-    const applyFilter = (key, value) => router.get('/users', { ...filters, [key]: value }, { preserveState: true, replace: true });
+    const applyFilter = (key, value) => router.get('/shop-admin/users', { ...filters, [key]: value }, { preserveState: true, replace: true });
     const remove = () => {
         if (!deleteTarget) return;
-        destroy(`/users/${deleteTarget.id}`, { preserveScroll: true, onSuccess: () => setDeleteTarget(null) });
+        destroy(`/shop-admin/users/${deleteTarget.id}`, { preserveScroll: true, onSuccess: () => setDeleteTarget(null) });
     };
 
     return (

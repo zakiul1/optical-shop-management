@@ -16,7 +16,7 @@ export default function Print({ shop, filters, summary, salesByPeriod = [], sale
     useEffect(() => { document.title = `${tx('report', locale)} - ${filters.label}`; }, [filters.label, locale]);
     const expiringSoon = expiryReports.expiring_soon ?? [];
     const expired = expiryReports.expired ?? [];
-    const reportUrl = `/reports?report_type=${filters.report_type}&date=${filters.date}&month=${filters.month}&year=${filters.year}&start_date=${filters.start_date}&end_date=${filters.end_date}`;
+    const reportUrl = `/shop-admin/reports?report_type=${filters.report_type}&date=${filters.date}&month=${filters.month}&year=${filters.year}&start_date=${filters.start_date}&end_date=${filters.end_date}`;
 
     return (
         <div className="min-h-screen bg-slate-100 p-4 text-slate-950 print:bg-white print:p-0">

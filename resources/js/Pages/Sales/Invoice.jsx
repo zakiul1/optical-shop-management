@@ -11,7 +11,7 @@ export default function Invoice({ sale, shop }) {
     return (
         <div className="min-h-screen bg-slate-100 p-4 text-slate-900 print:bg-white print:p-0">
             <div className="mx-auto mb-4 flex max-w-4xl flex-wrap justify-between gap-2 print:hidden">
-                <Link href={`/sales/${sale.id}`} className="rounded-2xl border border-slate-200 bg-white px-4 py-2 font-semibold">{tx('back', locale)}</Link>
+                <Link href={`/shop-admin/sales/${sale.id}`} className="rounded-2xl border border-slate-200 bg-white px-4 py-2 font-semibold">{tx('back', locale)}</Link>
                 <div className="flex flex-wrap gap-2">
                     <button onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-4 py-2 font-semibold text-white"><Icon name="download" /> {tx('downloadPdf', locale)}</button>
                     <button onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-4 py-2 font-semibold text-white"><Icon name="print" /> {tx('printSavePdf', locale)}</button>

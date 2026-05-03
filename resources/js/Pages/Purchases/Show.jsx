@@ -11,12 +11,12 @@ export default function Show({ purchase }) {
     const tr = (key) => label(key, locale);
     const [deleteOpen, setDeleteOpen] = useState(false);
     const { delete: destroy, processing } = useForm();
-    const removePurchase = () => destroy(`/purchases/${purchase.id}`, { onSuccess: () => setDeleteOpen(false) });
+    const removePurchase = () => destroy(`/shop-admin/purchases/${purchase.id}`, { onSuccess: () => setDeleteOpen(false) });
 
     return (
         <AdminLayout title={`${tr('purchase')} ${purchase.purchase_no}`}>
             <div className="mb-5 flex flex-wrap gap-3 print:hidden">
-                <Link href="/purchases" className="inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-2 font-semibold ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"><Icon name="x" /> {tr('back')}</Link>
+                <Link href="/shop-admin/purchases" className="inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-2 font-semibold ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"><Icon name="x" /> {tr('back')}</Link>
                 <button onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-4 py-2 font-semibold text-white"><Icon name="download" /> {tr('downloadPdf')}</button>
                 <button onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-4 py-2 font-semibold text-white"><Icon name="print" /> {tr('printSavePdf')}</button>
                 <button disabled={processing} onClick={() => setDeleteOpen(true)} className="inline-flex items-center gap-2 rounded-2xl bg-red-600 px-4 py-2 font-semibold text-white"><Icon name="trash" /> Delete & Reverse</button>

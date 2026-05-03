@@ -1,0 +1,5 @@
+import WebsiteLayout from '@/Layouts/WebsiteLayout';
+import { Icon } from '@/Components/Icons';
+import { useI18n } from '@/i18n';
+const tx=(i,k,bn)=>bn?(i?.[`${k}_bn`]||i?.[k]):i?.[k];
+export default function Services({ settings, services = [] }){const {locale}=useI18n(); const bn=locale==='bn'; return <WebsiteLayout settings={settings}><section className="mx-auto max-w-7xl px-4 py-16 md:px-6"><p className="font-black text-blue-600">{bn?'সেবা':'Services'}</p><h1 className="mt-3 text-4xl font-black md:text-6xl">{bn?'চোখের যত্নের সম্পূর্ণ সমাধান':'Complete eye care solutions'}</h1><div className="mt-10 grid gap-6 md:grid-cols-3">{services.map(s=><article key={s.id} className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm"><div className="grid h-14 w-14 place-items-center rounded-2xl bg-blue-50 text-blue-600"><Icon name={s.icon||'eye'}/></div>{s.image_url&&<img src={s.image_url} className="mt-5 h-44 w-full rounded-2xl object-cover"/>}<h3 className="mt-5 text-xl font-black">{tx(s,'title',bn)}</h3><p className="mt-3 leading-7 text-slate-600">{tx(s,'description',bn)}</p></article>)}</div></section></WebsiteLayout>}

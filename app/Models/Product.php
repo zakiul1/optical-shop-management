@@ -17,6 +17,7 @@ class Product extends Model
     protected $fillable = [
         'category_id', 'supplier_id', 'product_type', 'name', 'sku', 'barcode', 'brand', 'description',
         'purchase_price', 'sale_price', 'stock_quantity', 'minimum_stock_alert', 'unit', 'is_active',
+        'show_on_website', 'is_featured', 'website_short_description', 'website_short_description_bn',
         'created_by', 'updated_by',
     ];
 
@@ -26,6 +27,8 @@ class Product extends Model
         'stock_quantity' => 'integer',
         'minimum_stock_alert' => 'integer',
         'is_active' => 'boolean',
+        'show_on_website' => 'boolean',
+        'is_featured' => 'boolean',
     ];
 
     public function category(): BelongsTo

@@ -23,13 +23,13 @@ export default function Create({ products = [], suppliers = [] }) {
 
     const submit = e => {
         e.preventDefault();
-        post('/purchases');
+        post('/shop-admin/purchases');
     };
 
     return (
         <AdminLayout title="New Purchase / Stock In">
             <div className="mb-5 flex justify-between gap-3">
-                <Link href="/purchases" className="inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-2 font-semibold ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"><Icon name="x" /> Back</Link>
+                <Link href="/shop-admin/purchases" className="inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-2 font-semibold ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"><Icon name="x" /> Back</Link>
             </div>
             <form onSubmit={submit} className="grid gap-6 xl:grid-cols-[1fr_380px]">
                 <section className="space-y-5">

@@ -15,8 +15,8 @@ export default function Show({ sale }) {
     return (
         <AdminLayout title={`Invoice ${sale.invoice_no}`}>
             <div className="mb-5 flex flex-col gap-3 md:flex-row md:justify-between">
-                <Link href="/sales" className="inline-flex items-center justify-center rounded-2xl border border-slate-200 px-4 py-2 font-semibold dark:border-slate-700">Back to Sales</Link>
-                <Link href={`/sales/${sale.id}/invoice`} className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-4 py-2 font-semibold text-white"><Icon name="download" /> Download PDF</Link>
+                <Link href="/shop-admin/sales" className="inline-flex items-center justify-center rounded-2xl border border-slate-200 px-4 py-2 font-semibold dark:border-slate-700">Back to Sales</Link>
+                <Link href={`/shop-admin/sales/${sale.id}/invoice`} className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-4 py-2 font-semibold text-white"><Icon name="download" /> Download PDF</Link>
             </div>
 
             <div className="grid gap-6 xl:grid-cols-[1fr_360px]">

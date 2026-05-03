@@ -12,12 +12,12 @@ export default function Index({ categories = [] }) {
 
     const submit = (e) => {
         e.preventDefault();
-        post('/categories', { onSuccess: () => reset() });
+        post('/shop-admin/categories', { onSuccess: () => reset() });
     };
 
     const remove = () => {
         if (!deleteTarget) return;
-        destroy(`/categories/${deleteTarget.id}`, { preserveScroll: true, onSuccess: () => setDeleteTarget(null) });
+        destroy(`/shop-admin/categories/${deleteTarget.id}`, { preserveScroll: true, onSuccess: () => setDeleteTarget(null) });
     };
 
     return (

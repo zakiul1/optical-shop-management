@@ -31,15 +31,15 @@ export default function Index({ suppliers, filters = {}, summary = {} }) {
     const submit = (e) => {
         e.preventDefault();
         const options = { preserveScroll: true, onSuccess: () => { reset(); setEditing(null); } };
-        if (editing) put(`/suppliers/${editing.id}`, options);
-        else post('/suppliers', options);
+        if (editing) put(`/shop-admin/suppliers/${editing.id}`, options);
+        else post('/shop-admin/suppliers', options);
     };
 
-    const applyFilter = (key, value) => router.get('/suppliers', { ...filters, [key]: value }, { preserveState: true, replace: true });
+    const applyFilter = (key, value) => router.get('/shop-admin/suppliers', { ...filters, [key]: value }, { preserveState: true, replace: true });
 
     const removeSupplier = () => {
         if (!deleteTarget) return;
-        destroy(`/suppliers/${deleteTarget.id}`, { preserveScroll: true, onSuccess: () => setDeleteTarget(null) });
+        destroy(`/shop-admin/suppliers/${deleteTarget.id}`, { preserveScroll: true, onSuccess: () => setDeleteTarget(null) });
     };
 
     return (
